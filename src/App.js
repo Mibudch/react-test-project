@@ -10,6 +10,9 @@ class App extends Component {
     ],
     title: 'My pets'
   }
+  changeHandler = () => {
+    console.log('changed')
+  }
   render() {
     const cardStyle = {
       width: '200px',
@@ -26,6 +29,7 @@ class App extends Component {
         <h2>{this.state.title}</h2>
         <Card animal={pets[0].animal} name={pets[0].name} age={pets[0].age} color={pets[0].color} />
         <Card animal={pets[1].animal} name={pets[1].name} age={pets[1].age} color={pets[1].color} />
+        <button onClick={this.changeHandler}>Кнопка Change</button>
       </div>
     );
   }
