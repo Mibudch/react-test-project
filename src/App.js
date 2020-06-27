@@ -3,7 +3,14 @@ import './App.css';
 import Card from './Card'
 
 class App extends Component {
-   render() {
+  state = {
+    pets: [
+      { animal: 'Dog', name: 'Bobik', age: '4 year', color: 'brown' },
+      { animal: 'Parrot', name: 'Petty', age: '2 year', color: 'yellow' }
+    ],
+    title: 'My pets'
+  }
+  render() {
     const cardStyle = {
       width: '200px',
       margin: 'auto',
@@ -13,11 +20,12 @@ class App extends Component {
       fontSize: '24px',
       fontWeight: '800'
     }
+    const pets = this.state.pets
     return (
       <div style={cardStyle}>
-        <h2>My pets</h2>
-      <Card animal={'Dog'} name={'Bobik'} age={'4 years'} color={'brown'}/>
-      <Card animal={'Parrot'} name={'Petty'} age={'2 years'} color={'yellow'}/>
+        <h2>{this.state.title}</h2>
+        <Card animal={pets[0].animal} name={pets[0].name} age={pets[0].age} color={pets[0].color} />
+        <Card animal={pets[1].animal} name={pets[1].name} age={pets[1].age} color={pets[1].color} />
       </div>
     );
   }

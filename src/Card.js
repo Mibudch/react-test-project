@@ -4,7 +4,7 @@ import React from 'react'
 //         <div>Animal</div>
 //     )
 // }
-export default props =>(
+export default (props) =>(
     <>
     <div>Animal: {props.animal}</div>
     <div>Name: {props.name}</div>
