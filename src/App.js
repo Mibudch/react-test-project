@@ -15,8 +15,9 @@ class App extends Component {
     }
     return (
       <div style={cardStyle}>
-        <h2>My pet</h2>
-      <Card />
+        <h2>My pets</h2>
+      <Card animal={'Dog'} name={'Bobik'} age={'4 years'} color={'brown'}/>
+      <Card animal={'Parrot'} name={'Petty'} age={'2 years'} color={'yellow'}/>
       </div>
     );
   }

@@ -4,7 +4,13 @@ import React from 'react'
 //         <div>Animal</div>
 //     )
 // }
-export default () =>(
-    <div>Animal</div>
+export default props =>(
+    <>
+    <div>Animal: {props.animal}</div>
+    <div>Name: {props.name}</div>
+    <div>Age: {props.age}</div>
+    <div>Color: {props.color}</div>
+    <p></p>
+    </>
 )
-    //   занятие 2-5 
+    
