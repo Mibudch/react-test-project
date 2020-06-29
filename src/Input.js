@@ -5,6 +5,8 @@ import React from 'react'
 //     )
 // }
 export default () =>(
-    <div>Animal</div>
+    <>
+    <input type='text' placeholder='type your to does'/>
+    <button>add</button>
+    </>
 )
-    //   занятие 2-5 
