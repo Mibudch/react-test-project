@@ -4,7 +4,7 @@ import React from 'react'
 //         <div>Animal</div>
 //     )
 // }
-export default () =>(
+export default (props) =>(
     <>
     <input type='text' placeholder='type your to does'/>
     <button>add</button>
