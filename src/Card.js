@@ -10,6 +10,7 @@ export default (props) =>(
     <div>Name: {props.name}</div>
     <div>Age: {props.age}</div>
     <div>Color: {props.color}</div>
+    <button onClick={props.onChangeTitle}>Update</button>
     <p></p>
     </>
 )

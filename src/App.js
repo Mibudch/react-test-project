@@ -10,8 +10,16 @@ class App extends Component {
     ],
     title: 'My pets'
   }
-  changeHandler = () => {
-    console.log('changed')
+  changeHandler = (newTilte) => {
+    this.setState({
+      title: newTilte
+    })
+  }
+
+  handleInput = (event) => {
+    this.setState({
+      title: event.target.value
+    })
   }
   render() {
     const cardStyle = {
@@ -23,13 +31,24 @@ class App extends Component {
       fontSize: '24px',
       fontWeight: '800'
     }
-    const pets = this.state.pets
+
     return (
       <div style={cardStyle}>
         <h2>{this.state.title}</h2>
-        <Card animal={pets[0].animal} name={pets[0].name} age={pets[0].age} color={pets[0].color} />
-        <Card animal={pets[1].animal} name={pets[1].name} age={pets[1].age} color={pets[1].color} />
-        <button onClick={this.changeHandler}>Кнопка Change</button>
+        <input type='text' onChange={this.handleInput} />
+        {this.state.pets.map((pet, i) => {
+          return (
+            <Card
+              key={i}
+              animal={pet.animal}
+              name={pet.name}
+              age={pet.age}
+              color={pet.color}
+              onChangeTitle={() => this.changeHandler(pet.name)}
+            />
+          )
+        })}
+        <button onClick={this.changeHandler.bind(this, 'change')}>Кнопка Change</button>
       </div>
     );
   }
