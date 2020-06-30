@@ -1,57 +1,35 @@
 import React, { Component } from 'react';
-import './App.css';
 import Card from './Card'
 
 class App extends Component {
-  state = {
-    pets: [
-      { animal: 'Dog', name: 'Bobik', age: '4 year', color: 'brown' },
-      { animal: 'Parrot', name: 'Petty', age: '2 year', color: 'yellow' }
-    ],
-    title: 'My pets'
-  }
-  changeHandler = (newTilte) => {
-    this.setState({
-      title: newTilte
-    })
-  }
-
-  handleInput = (event) => {
-    this.setState({
-      title: event.target.value
-    })
+  constructor(props) {
+    super(props)
+    this.state = {
+      pageTitle: 'My pets',
+      pets: [
+        { animal: 'Dog', name: 'Bobik', age: '5 years' },
+        { animal: 'Cat', name: 'Pushok', age: '4 years' },
+        { animal: 'Fish', name: 'Nemo', age: '2 years' }
+      ]
+    }
   }
   render() {
-    const cardStyle = {
-      width: '200px',
-      margin: 'auto',
-      textAlign: 'center',
-      color: '#333',
-      background: 'grey',
-      fontSize: '24px',
-      fontWeight: '800'
-    }
-
     return (
-      <div style={cardStyle}>
-        <h2>{this.state.title}</h2>
-        <input type='text' onChange={this.handleInput} />
-        {this.state.pets.map((pet, i) => {
+      <>
+        <h2>{this.state.pageTitle}</h2>
+        {this.state.pets.map((pet, index) => {
           return (
             <Card
-              key={i}
+              key={index}
               animal={pet.animal}
               name={pet.name}
               age={pet.age}
-              color={pet.color}
-              onChangeTitle={() => this.changeHandler(pet.name)}
+              year={pet.age}
             />
           )
-        })}
-        <button onClick={this.changeHandler.bind(this, 'change')}>Кнопка Change</button>
-      </div>
-    );
+        })
+        }
+      </>)
   }
 }
-
 export default App;
