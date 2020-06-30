@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
-import Card from './Card'
+import ClubInfo from './clubInfo/ClubInfo'
 
 class App extends Component {
-   render() {
-    const cardStyle = {
-      width: '200px',
-      margin: 'auto',
-      textAlign: 'center',
-      color: '#333',
-      background: 'grey',
-      fontSize: '24px',
-      fontWeight: '800'
+  constructor(props) {
+    super(props)
+    this.state = {
+      clubInfo: [
+        { name: 'Barcelona', city: 'Barcelona', year: '29.11.1899' }
+      ],
+      clubSucsess: [
+        { medals: [], cups: [], goals: [] }
+      ],
+      team: [
+        { goalkeeper: 'Иньяки Пенья', quarterback: 'Жерар Пике', halfback: 'Алекс Кольядо', forward: 'Лионель Месси' }
+      ],
+      title: 'Footbal Club'
     }
+  }
+  render() {
     return (
-      <div style={cardStyle}>
-        <h2>My pet</h2>
-      <Card />
-      </div>
+      <>
+        <h3>{this.state.title}</h3>
+        {this.state.clubInfo.map((elem, index) => {
+          return (
+            <ClubInfo
+              key={index}
+              name={elem.name}
+              city={elem.city}
+              year={elem.year}
+            />
+          )
+        })}
+      </>
+
     );
   }
 }
