@@ -1,9 +1,9 @@
 import React from 'react'
-
+import './Card.css'
 export default props => (
-    <>
-        <div>Animal: {props.animal}</div>
-        <div>Name: {props.name}</div>
-        <div>Age: {props.age}</div>
-    </>
+    <div className='Card'>
+        <div>Animal: <strong>{props.animal}</strong></div>
+        <div>Name: <strong>{props.name}</strong></div>
+        <div>Age: <strong>{props.age}</strong></div>
+    </div>
 )

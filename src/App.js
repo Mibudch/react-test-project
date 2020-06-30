@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <h2>{this.state.pageTitle}</h2>
+        <h2 style={{textAlign:'center'}}>{this.state.pageTitle}</h2>
         {this.state.pets.map((pet, index) => {
           return (
             <Card
