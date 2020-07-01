@@ -5,7 +5,7 @@ class ToDoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            arrTodos: ['task', 'task', 'task'],
+            arrTodos: ['firstTask', 'secondTask', 'thirdTask'],
             inputValue: ''
         }
     };
@@ -15,27 +15,39 @@ class ToDoList extends Component {
         })
     };
     handlerOnClick = () => {
+        if (this.state.inputValue) {
+            const arr = [...this.state.arrTodos]
+            const newArr = arr.concat(this.state.inputValue)
+            this.setState({
+                arrTodos: newArr,
+                inputValue: ''
+            })
+        }
+    }
+    handlerDone = (i) => {
+        const arr = [...this.state.arrTodos]
+        arr.splice(i, 1)
         this.setState({
-            arrTodos: [this.state.arrTodos.push(this.state.inputValue)],
-            inputValue: ''
+            arrTodos: arr,
         })
     }
     render() {
         return (
             <>
                 <h1>You have {this.state.arrTodos.length || 0} Todos</h1>
-                <input type='text' placeholder='type here your todo' onChange={this.handlerOnChange} />
+                <input type='text' placeholder='type here your todo' value={this.state.inputValue} onChange={this.handlerOnChange} />
                 <button onClick={this.handlerOnClick}>add</button>
-                <ul>
+                <ol>
                     {this.state.arrTodos.map((elem, i) => {
                         return (
                             <TodoWrapper
                                 key={i}
                                 task={elem}
+                                handlerDone={this.handlerDone.bind(this, i)}
                             />
                         )
                     })}
-                </ul>
+                </ol>
             </>
         )
     }
