@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import InputComponent from './InputComponent/InputComponent'
+import TodoWrapper from './TodoWrapper/TodoWrapper'
 import './ToDoList';
 class ToDoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            arrTodos: ['task', 'task', 'task', 'task',]
+            arrTodos: ['task', 'task', 'task'],
+            inputValue: ''
         }
     };
-
+    handlerOnChange = (event) => {
+        this.setState({
+            inputValue: event.target.value
+        })
+    };
+    handlerOnClick = () => {
+        this.setState({
+            arrTodos: [this.state.arrTodos.push(this.state.inputValue)],
+            inputValue: ''
+        })
+    }
     render() {
-        const arrTodos = this.state.arrTodos
         return (
             <>
-                <h1>You have {arrTodos.length || 0} Todos</h1>
-                {/* {this.state.arrTodos.map((elem, indx) => {
-                return (
-                    
-                )
-            })} */}
-                <InputComponent />
+                <h1>You have {this.state.arrTodos.length || 0} Todos</h1>
+                <input type='text' placeholder='type here your todo' onChange={this.handlerOnChange} />
+                <button onClick={this.handlerOnClick}>add</button>
+                <ul>
+                    {this.state.arrTodos.map((elem, i) => {
+                        return (
+                            <TodoWrapper
+                                key={i}
+                                task={elem}
+                            />
+                        )
+                    })}
+                </ul>
             </>
         )
     }
