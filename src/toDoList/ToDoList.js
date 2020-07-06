@@ -7,7 +7,8 @@ class ToDoList extends Component {
         this.state = {
             arrTodos: ['firstTask', 'secondTask', 'thirdTask'],
             inputValue: '',
-            flag: true
+            buttonValue: 'add',
+            indexTodo: ''
         }
     };
     handlerOnChange = (event) => {
@@ -16,17 +17,23 @@ class ToDoList extends Component {
         })
     };
     handlerOnClick = () => {
-        if (this.state.inputValue && this.state.flag) {
+        if (this.state.inputValue && this.state.buttonValue === 'add') {
             const arr = [...this.state.arrTodos]
             const newArr = arr.concat(this.state.inputValue)
             this.setState({
                 arrTodos: newArr,
                 inputValue: '',
-                flag: true
             })
-            if (this.state.inputValue && !this.state.flag) {
-                
-            }
+        }
+        if (this.state.inputValue && this.state.buttonValue === 'edit') {
+            const arr = [...this.state.arrTodos]
+            arr.splice(this.state.indexTodo, 1, this.state.inputValue)
+            this.setState({
+                arrTodos: arr,
+                indexTodo: '',
+                buttonValue: 'add',
+                inputValue: ''
+            })
         }
     }
     handlerDone = (i) => {
@@ -36,11 +43,11 @@ class ToDoList extends Component {
             arrTodos: arr,
         })
     };
-    handlerEdit = (elem) => {
-        console.log(elem)
+    handlerEdit = (elem, i) => {
         this.setState({
             inputValue: elem,
-            flag: false
+            buttonValue: 'edit',
+            indexTodo: i
         })
     }
     render() {
@@ -48,7 +55,7 @@ class ToDoList extends Component {
             <>
                 <h1>You have {this.state.arrTodos.length || 0} Todos</h1>
                 <input type='text' placeholder='type here your todo' value={this.state.inputValue} onChange={this.handlerOnChange} />
-                <button onClick={this.handlerOnClick}>add</button>
+                <button onClick={this.handlerOnClick}>{this.state.buttonValue}</button>
                 <ol>
                     {this.state.arrTodos.map((elem, i) => {
                         return (
@@ -56,7 +63,7 @@ class ToDoList extends Component {
                                 key={i}
                                 task={elem}
                                 handlerDone={this.handlerDone.bind(this, i)}
-                                handlerEdit={this.handlerEdit.bind(this, elem)}
+                                handlerEdit={this.handlerEdit.bind(this, elem, i)}
                             />
                         )
                     })}
