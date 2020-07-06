@@ -6,7 +6,8 @@ class ToDoList extends Component {
         super(props)
         this.state = {
             arrTodos: ['firstTask', 'secondTask', 'thirdTask'],
-            inputValue: ''
+            inputValue: '',
+            flag: true
         }
     };
     handlerOnChange = (event) => {
@@ -15,13 +16,17 @@ class ToDoList extends Component {
         })
     };
     handlerOnClick = () => {
-        if (this.state.inputValue) {
+        if (this.state.inputValue && this.state.flag) {
             const arr = [...this.state.arrTodos]
             const newArr = arr.concat(this.state.inputValue)
             this.setState({
                 arrTodos: newArr,
-                inputValue: ''
+                inputValue: '',
+                flag: true
             })
+            if (this.state.inputValue && !this.state.flag) {
+                
+            }
         }
     }
     handlerDone = (i) => {
@@ -29,6 +34,13 @@ class ToDoList extends Component {
         arr.splice(i, 1)
         this.setState({
             arrTodos: arr,
+        })
+    };
+    handlerEdit = (elem) => {
+        console.log(elem)
+        this.setState({
+            inputValue: elem,
+            flag: false
         })
     }
     render() {
@@ -44,6 +56,7 @@ class ToDoList extends Component {
                                 key={i}
                                 task={elem}
                                 handlerDone={this.handlerDone.bind(this, i)}
+                                handlerEdit={this.handlerEdit.bind(this, elem)}
                             />
                         )
                     })}
