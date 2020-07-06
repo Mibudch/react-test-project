@@ -5,7 +5,7 @@ class ToDoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            arrTodos: ['firstTask', 'secondTask', 'thirdTask'],
+            arrTodos: [],
             inputValue: '',
             buttonValue: 'add',
             indexTodo: ''
