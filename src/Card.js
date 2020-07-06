@@ -1,10 +1,9 @@
 import React from 'react'
-// function Card () {
-//     return(
-//         <div>Animal</div>
-//     )
-// }
-export default () =>(
-    <div>Animal</div>
+import './Card.css'
+export default props => (
+    <div className='Card'>
+        <div>Animal: <strong>{props.animal}</strong></div>
+        <div>Name: <strong>{props.name}</strong></div>
+        <div>Age: <strong>{props.age}</strong></div>
+    </div>
 )
-    //   занятие 2-5 

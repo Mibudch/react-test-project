@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import './App.css';
 import Card from './Card'
 
 class App extends Component {
-   render() {
-    const cardStyle = {
-      width: '200px',
-      margin: 'auto',
-      textAlign: 'center',
-      color: '#333',
-      background: 'grey',
-      fontSize: '24px',
-      fontWeight: '800'
+  constructor(props) {
+    super(props)
+    this.state = {
+      pageTitle: 'My pets',
+      pets: [
+        { animal: 'Dog', name: 'Bobik', age: '5 years' },
+        { animal: 'Cat', name: 'Pushok', age: '4 years' },
+        { animal: 'Fish', name: 'Nemo', age: '2 years' }
+      ]
     }
+  }
+  render() {
     return (
-      <div style={cardStyle}>
-        <h2>My pet</h2>
-      <Card />
-      </div>
-    );
+      <>
+        <h2 style={{textAlign:'center'}}>{this.state.pageTitle}</h2>
+        {this.state.pets.map((pet, index) => {
+          return (
+            <Card
+              key={index}
+              animal={pet.animal}
+              name={pet.name}
+              age={pet.age}
+              year={pet.age}
+            />
+          )
+        })
+        }
+      </>)
   }
 }
-
 export default App;
