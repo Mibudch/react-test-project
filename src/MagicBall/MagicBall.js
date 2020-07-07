@@ -34,7 +34,7 @@ class MagicBall extends Component {
             ballWrapper: 'Узнай свою судьбу',
             inputWrapper: '',
             historyWrapper: [],
-
+            questionBoard: ''
         }
     }
     render() {
