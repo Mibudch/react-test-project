@@ -33,19 +33,19 @@ class MagicBall extends Component {
             ],
             ballWrapper: 'Узнай свою судьбу',
             inputValue: '',
-            historyWrapper: [{ question: 'вопрос', answer: 'ответ' }],
+            historyWrapper: [{ question: '', answer: '' }],
             questionBoard: ''
         }
     }
     handlerOnclick = () => {
-        const length = this.state.answers.length
-        const random = Math.floor(Math.random() * length)
+        const random = Math.floor(Math.random() * this.state.answers.length)
         const randomAnswer = this.state.answers[random]
-        const { historyWrapper } = this.state.historyWrapper.question
-        console.log(historyWrapper)
+        const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer }
+        const historyWrapper = [...this.state.historyWrapper.concat(newHistory)]
         this.setState({
             ballWrapper: randomAnswer.answer,
-
+            historyWrapper: historyWrapper,
+            inputValue: ''
         })
     }
     handlerOnChange = (event) => {
@@ -60,15 +60,18 @@ class MagicBall extends Component {
                 <div className='inlineFlex'>
                     <InputWrapper onClick={this.handlerOnclick} onChange={this.handlerOnChange} />
                     <BallWrapper answer={this.state.ballWrapper} />
-                    {this.state.historyWrapper.map((elem, i) =>{
-                        return(
-                            <HistoryWrapper 
-                                key={i}
-                                question={elem.question}
-                                answer={elem.answer}
-                            />
-                        )
-                    })}
+                    <div>
+                        <h3>Ваши предсказания:</h3>
+                        {this.state.historyWrapper.map((elem, i) => {
+                            return (
+                                <HistoryWrapper
+                                    key={i}
+                                    question={elem.question}
+                                    answer={elem.answer}
+                                />
+                            )
+                        })}
+                    </div>
                 </div>
             </>
         )
