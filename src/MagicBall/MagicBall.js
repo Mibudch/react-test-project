@@ -10,26 +10,26 @@ class MagicBall extends Component {
         this.state = {
             title: 'Магический шар предсказаний',
             answers: [
-                { color: 'blue', answer: 'Бесспорно', attitude: '' },
-                { color: 'blue', answer: 'Предрешено', attitude: '' },
-                { color: 'blue', answer: 'Никаких сомнений', attitude: '' },
-                { color: 'blue', answer: 'Определённо да', attitude: '' },
-                { color: 'blue', answer: 'Можешь быть уверен в этом', attitude: '' },
-                { color: 'green', answer: 'Мне кажется - "да"', attitude: '' },
-                { color: 'green', answer: 'Вероятнее всего', attitude: '' },
-                { color: 'green', answer: 'Хорошие перспективы', attitude: '' },
-                { color: 'green', answer: 'Знаки говорят  - "да"', attitude: '' },
-                { color: 'green', answer: 'Да', attitude: '' },
-                { color: 'yellow', answer: 'Пока не ясно, попробуй ещё', attitude: '' },
-                { color: 'yellow', answer: 'Спроси позже', attitude: '' },
-                { color: 'yellow', answer: 'Лучше не рассказывать', attitude: '' },
-                { color: 'yellow', answer: 'Сейчас нельзя предсказать', attitude: '' },
-                { color: 'yellow', answer: 'Сконцентрируйся и спроси опять', attitude: '' },
-                { color: 'red', answer: 'Даже не думай', attitude: '' },
-                { color: 'red', answer: 'Мой ответ - "нет"', attitude: '' },
-                { color: 'red', answer: 'По моим данным - "нет"', attitude: '' },
-                { color: 'red', answer: 'Перспективы не очень хорошие', attitude: '' },
-                { color: 'red', answer: 'Весьма сомнительно', attitude: '' },
+                { color: 'blue', answer: 'Бесспорно' },
+                { color: 'blue', answer: 'Предрешено' },
+                { color: 'blue', answer: 'Никаких сомнений' },
+                { color: 'blue', answer: 'Определённо да' },
+                { color: 'blue', answer: 'Можешь быть уверен в этом' },
+                { color: 'green', answer: 'Мне кажется - "да"' },
+                { color: 'green', answer: 'Вероятнее всего' },
+                { color: 'green', answer: 'Хорошие перспективы' },
+                { color: 'green', answer: 'Знаки говорят  - "да"' },
+                { color: 'green', answer: 'Да' },
+                { color: 'yellow', answer: 'Пока не ясно, попробуй ещё' },
+                { color: 'yellow', answer: 'Спроси позже' },
+                { color: 'yellow', answer: 'Лучше не рассказывать' },
+                { color: 'yellow', answer: 'Сейчас нельзя предсказать' },
+                { color: 'yellow', answer: 'Сконцентрируйся и спроси опять' },
+                { color: 'red', answer: 'Даже не думай' },
+                { color: 'red', answer: 'Мой ответ - "нет"' },
+                { color: 'red', answer: 'По моим данным - "нет"' },
+                { color: 'red', answer: 'Перспективы не очень хорошие' },
+                { color: 'red', answer: 'Весьма сомнительно' },
             ],
             ballWrapper: 'Узнай свою судьбу',
             inputWrapper: '',
@@ -37,12 +37,21 @@ class MagicBall extends Component {
             questionBoard: ''
         }
     }
+    handlerOnclick = () => {
+        const length = this.state.answers.length
+        const random = Math.floor(Math.random() * length)
+        const randomAnswer = this.state.answers[random]
+        this.setState(  {
+            ballWrapper: randomAnswer.answer
+        })
+        console.log(this.state.ballWrapper)
+    }
     render() {
         return (
             <>
                 <h1 style={{ textAlign: 'center' }}>{this.state.title}</h1>
                 <div className='inlineFlex'>
-                    <InputWrapper />
+                    <InputWrapper onClick={this.handlerOnclick} />
                     <BallWrapper answer={this.state.ballWrapper} />
                     <HistoryWrapper historyWrapper={this.state.historyWrapper} />
                 </div>

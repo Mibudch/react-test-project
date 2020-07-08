@@ -1,7 +1,7 @@
 .ball {
     display: flex;
-    width: 250px;
-    height: 250px;
+    width: 320px;
+    height: 320px;
     background-image: url(../img/ball.png);
     background-position: center;
     background-size: cover;
@@ -12,8 +12,8 @@
 .ballCenter {
     align-self: center;
     background-image: url(../img/ball-hole.png);
-    width: 120px;
-    height: 120px;
+    width: 170px;
+    height: 170px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -22,5 +22,6 @@
     text-align: center;
     color: rgba(255, 255, 255,.7);
     font-family: cursive;
-    text-shadow: 0 5px 10px rgba(0,0,0,1)
+    text-shadow: 0 5px 10px rgba(0,0,0,1);
+    justify-content: center;
 }
