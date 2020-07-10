@@ -50,7 +50,6 @@ class MagicBall extends Component {
                 fullHistory: true,
                 inputValue: ''
             })
-            console.log(this.state.inputValue)
         }
     }
     handlerOnChange = (event) => {
@@ -63,7 +62,7 @@ class MagicBall extends Component {
             <>
                 <h1 style={{ textAlign: 'center' }}>{this.state.title}</h1>
                 <div className='inlineFlex'>
-                    <InputWrapper onClick={this.handlerOnclick} onChange={this.handlerOnChange} />
+                    <InputWrapper value={this.state.inputValue} onClick={this.handlerOnclick} onChange={this.handlerOnChange} />
                     <BallWrapper answer={this.state.ballWrapper} />
                     <div>
                         <h3>Ваши предсказания:</h3>
