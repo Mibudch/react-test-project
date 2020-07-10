@@ -34,19 +34,24 @@ class MagicBall extends Component {
             ballWrapper: 'Узнай свою судьбу',
             inputValue: '',
             historyWrapper: [{ question: '', answer: '' }],
-            questionBoard: ''
+            questionBoard: '',
+            fullHistory: false
         }
     }
     handlerOnclick = () => {
-        const random = Math.floor(Math.random() * this.state.answers.length)
-        const randomAnswer = this.state.answers[random]
-        const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer }
-        const historyWrapper = [...this.state.historyWrapper.concat(newHistory)]
-        this.setState({
-            ballWrapper: randomAnswer.answer,
-            historyWrapper: historyWrapper,
-            inputValue: ''
-        })
+        if (this.state.inputValue) {
+            const random = Math.floor(Math.random() * this.state.answers.length)
+            const randomAnswer = this.state.answers[random]
+            const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer }
+            const historyWrapper = [...this.state.historyWrapper.concat(newHistory)]
+            this.setState({
+                ballWrapper: randomAnswer.answer,
+                historyWrapper: historyWrapper,
+                fullHistory: true,
+                inputValue: ''
+            })
+            console.log(this.state.inputValue)
+        }
     }
     handlerOnChange = (event) => {
         this.setState({
@@ -62,7 +67,7 @@ class MagicBall extends Component {
                     <BallWrapper answer={this.state.ballWrapper} />
                     <div>
                         <h3>Ваши предсказания:</h3>
-                        {this.state.historyWrapper.map((elem, i) => {
+                        {this.state.fullHistory ? this.state.historyWrapper.map((elem, i) => {
                             return (
                                 <HistoryWrapper
                                     key={i}
@@ -70,7 +75,7 @@ class MagicBall extends Component {
                                     answer={elem.answer}
                                 />
                             )
-                        })}
+                        }) : null}
                     </div>
                 </div>
             </>
