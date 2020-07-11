@@ -1,3 +1,22 @@
-.question{
+.question {
     font-style: italic;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.yellow {
+    color: yellow;
+}
+.text{
+    font-size: 20px;
 }

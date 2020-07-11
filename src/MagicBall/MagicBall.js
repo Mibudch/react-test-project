@@ -33,22 +33,19 @@ class MagicBall extends Component {
             ],
             ballWrapper: 'Узнай свою судьбу',
             inputValue: '',
-            historyWrapper: [{ question: '', answer: '' }],
-            questionBoard: '',
-            fullHistory: false
+            historyWrapper: [],
         }
     }
     handlerOnclick = () => {
         if (this.state.inputValue) {
             const random = Math.floor(Math.random() * this.state.answers.length)
             const randomAnswer = this.state.answers[random]
-            const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer }
+            const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer, color: randomAnswer.color }
             const historyWrapper = [...this.state.historyWrapper.concat(newHistory)]
             this.setState({
                 ballWrapper: randomAnswer.answer,
                 historyWrapper: historyWrapper,
-                fullHistory: true,
-                inputValue: ''
+                inputValue: '',
             })
         }
     }
@@ -64,14 +61,15 @@ class MagicBall extends Component {
                 <div className='inlineFlex'>
                     <InputWrapper value={this.state.inputValue} onClick={this.handlerOnclick} onChange={this.handlerOnChange} />
                     <BallWrapper answer={this.state.ballWrapper} />
-                    <div>
+                    <div className='border'>
                         <h3>Ваши предсказания:</h3>
-                        {this.state.fullHistory ? this.state.historyWrapper.map((elem, i) => {
+                        {this.state.historyWrapper ? this.state.historyWrapper.map((elem, i) => {
                             return (
                                 <HistoryWrapper
                                     key={i}
                                     question={elem.question}
                                     answer={elem.answer}
+                                    className={`${elem.color} ${'text'}`}
                                 />
                             )
                         }) : null}
