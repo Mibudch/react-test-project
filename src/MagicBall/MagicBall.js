@@ -59,20 +59,22 @@ class MagicBall extends Component {
             <>
                 <h1 style={{ textAlign: 'center' }}>{this.state.title}</h1>
                 <div className='inlineFlex'>
-                    <InputWrapper value={this.state.inputValue} onClick={this.handlerOnclick} onChange={this.handlerOnChange} />
-                    <BallWrapper answer={this.state.ballWrapper} />
-                    <div className='border'>
-                        <h3>Ваши предсказания:</h3>
-                        {this.state.historyWrapper ? this.state.historyWrapper.map((elem, i) => {
-                            return (
-                                <HistoryWrapper
-                                    key={i}
-                                    question={elem.question}
-                                    answer={elem.answer}
-                                    className={`${elem.color} ${'text'}`}
-                                />
-                            )
-                        }) : null}
+                    <InputWrapper value={this.state.inputValue} onChange={this.handlerOnChange} />
+                    <BallWrapper answer={this.state.ballWrapper} onClick={this.handlerOnclick}/>
+                    <div>
+                        <h3 style={{ textAlign: 'center' }}>Ваши предсказания:</h3>
+                        <div className='border'>
+                            {this.state.historyWrapper ? this.state.historyWrapper.map((elem, i) => {
+                                return (
+                                    <HistoryWrapper
+                                        key={i}
+                                        question={elem.question}
+                                        answer={elem.answer}
+                                        className={`${elem.color} ${'text'}`}
+                                    />
+                                )
+                            }) : null}
+                        </div>
                     </div>
                 </div>
             </>

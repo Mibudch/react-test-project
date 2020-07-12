@@ -1,0 +1,11 @@
+.align{
+    display: inline-block;
+    align-self: center;
+}
+
+.input{
+    height: 30px;
+    width: 300px;
+    font-style: italic;
+    font-size: 20px;
+}
