@@ -41,7 +41,7 @@ class MagicBall extends Component {
             const random = Math.floor(Math.random() * this.state.answers.length)
             const randomAnswer = this.state.answers[random]
             const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer, color: randomAnswer.color }
-            const historyWrapper = [...this.state.historyWrapper.concat(newHistory)]
+            const historyWrapper = [newHistory, ...this.state.historyWrapper]
             this.setState({
                 ballWrapper: randomAnswer.answer,
                 historyWrapper: historyWrapper,
@@ -60,10 +60,10 @@ class MagicBall extends Component {
                 <h1 style={{ textAlign: 'center' }}>{this.state.title}</h1>
                 <div className='inlineFlex'>
                     <InputWrapper value={this.state.inputValue} onChange={this.handlerOnChange} />
-                    <BallWrapper answer={this.state.ballWrapper} onClick={this.handlerOnclick}/>
+                    <BallWrapper answer={this.state.ballWrapper} onClick={this.handlerOnclick} />
                     <div>
                         <h3 style={{ textAlign: 'center' }}>Ваши предсказания:</h3>
-                        <div className='border'>
+                        <div className='border' >
                             {this.state.historyWrapper ? this.state.historyWrapper.map((elem, i) => {
                                 return (
                                     <HistoryWrapper
