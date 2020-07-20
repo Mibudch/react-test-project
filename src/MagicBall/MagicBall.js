@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BallWrapper from './BallWrapper';
+import { BallWrapper } from './BallWrapper';
 import InputWrapper from './InputWrapper';
 import HistoryWrapper from './HistoryWrapper';
 import './MagicBall.css'
@@ -64,7 +64,7 @@ class MagicBall extends Component {
                     <div>
                         <h3 style={{ textAlign: 'center' }}>Ваши предсказания:</h3>
                         <div className='border' >
-                            {this.state.historyWrapper ? this.state.historyWrapper.map((elem, i) => {
+                            {this.state.historyWrapper?.map((elem, i) => {
                                 return (
                                     <HistoryWrapper
                                         key={i}
@@ -73,7 +73,7 @@ class MagicBall extends Component {
                                         className={`${elem.color} ${'text'}`}
                                     />
                                 )
-                            }) : null}
+                            })}
                         </div>
                     </div>
                 </div>
