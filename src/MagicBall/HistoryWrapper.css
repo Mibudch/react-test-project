@@ -1,0 +1,26 @@
+.question {
+    font-style: italic;
+}
+
+.m-red {
+    color: red;
+}
+
+.m-green {
+    color: green;
+}
+
+.m-blue {
+    color: blue;
+}
+
+.m-yellow {
+    color: yellow;
+}
+.text{
+    font-size: 20px;
+}
+.padding{
+    padding: 10px;
+    overflow-wrap: anywhere;
+}
