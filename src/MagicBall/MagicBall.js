@@ -3,34 +3,13 @@ import { BallWrapper } from './BallWrapper';
 import InputWrapper from './InputWrapper';
 import HistoryWrapper from './HistoryWrapper';
 import './MagicBall.css'
+import { answers} from './MagicBallConstant'
 
 class MagicBall extends Component {
     constructor(props) {
         super(props)
         this.state = {
             title: 'Магический шар предсказаний',
-            answers: [
-                { color: 'blue', answer: 'Бесспорно' },
-                { color: 'blue', answer: 'Предрешено' },
-                { color: 'blue', answer: 'Никаких сомнений' },
-                { color: 'blue', answer: 'Определённо да' },
-                { color: 'blue', answer: 'Можешь быть уверен в этом' },
-                { color: 'green', answer: 'Мне кажется - "да"' },
-                { color: 'green', answer: 'Вероятнее всего' },
-                { color: 'green', answer: 'Хорошие перспективы' },
-                { color: 'green', answer: 'Знаки говорят  - "да"' },
-                { color: 'green', answer: 'Да' },
-                { color: 'yellow', answer: 'Пока не ясно, попробуй ещё' },
-                { color: 'yellow', answer: 'Спроси позже' },
-                { color: 'yellow', answer: 'Лучше не рассказывать' },
-                { color: 'yellow', answer: 'Сейчас нельзя предсказать' },
-                { color: 'yellow', answer: 'Сконцентрируйся и спроси опять' },
-                { color: 'red', answer: 'Даже не думай' },
-                { color: 'red', answer: 'Мой ответ - "нет"' },
-                { color: 'red', answer: 'По моим данным - "нет"' },
-                { color: 'red', answer: 'Перспективы не очень хорошие' },
-                { color: 'red', answer: 'Весьма сомнительно' },
-            ],
             ballWrapper: 'Узнай свою судьбу',
             inputValue: '',
             historyWrapper: [],
@@ -38,8 +17,8 @@ class MagicBall extends Component {
     }
     handlerOnclick = () => {
         if (this.state.inputValue) {
-            const random = Math.floor(Math.random() * this.state.answers.length)
-            const randomAnswer = this.state.answers[random]
+            const random = Math.floor(Math.random() * answers.length)
+            const randomAnswer = answers[random]
             const newHistory = { question: this.state.inputValue, answer: randomAnswer.answer, color: randomAnswer.color }
             const historyWrapper = [newHistory, ...this.state.historyWrapper]
             this.setState({
