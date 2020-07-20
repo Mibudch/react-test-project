@@ -49,7 +49,7 @@ class MagicBall extends Component {
                                         key={i}
                                         question={elem.question}
                                         answer={elem.answer}
-                                        className={`${elem.color} ${'text'}`}
+                                        className={`m-${elem.color} ${'text'}`}
                                     />
                                 )
                             })}
