@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
+import Card from '../card/card';
+import { pizza } from '../description/description.js'
 
 class Pizza extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            cards: ['Pepperoni', 'Margarita', 'Sorento', 'Italiano']
-        }
-    }
     render() {
         return (
-        <div>
-            
-        </div>
+            <div>
+                {pizza.map((el, i) => {
+                    return (
+                        <Card 
+                            key= {i}
+                            name = {el.pizzaName}
+                            price ={el.price}
+                            description={el.description}
+                            specification={el.specification}
+                        />
+                    )
+                })}
+            </div>
         )
     }
 }
