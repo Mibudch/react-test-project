@@ -1,0 +1,5 @@
+.cardFlex {
+    display: flex;
+    flex-flow: wrap;
+}
+
