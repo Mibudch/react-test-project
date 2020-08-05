@@ -83,7 +83,7 @@ export default function RecipeReviewCard(props) {
         </Button>
         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
-            You just buy {props.name} pizza !)
+            You just buy {props.name} pizza!
           </Alert>
         </Snackbar>
         <IconButton
