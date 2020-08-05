@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import Card from './Card'
+import MediaQuery from 'react-responsive'
 
-class App extends Component {
-   render() {
-    const cardStyle = {
-      width: '200px',
-      margin: 'auto',
-      textAlign: 'center',
-      color: '#333',
-      background: 'grey',
-      fontSize: '24px',
-      fontWeight: '800'
-    }
-    return (
-      <div style={cardStyle}>
-        <h2>My pet</h2>
-      <Card />
-      </div>
-    );
-  }
-}
+export const App = () => (
+  <div>
+    <h1>Device Test!</h1>
+    <MediaQuery minDeviceWidth={1224} device={{ deviceWidth: 1600 }}>
+      <p>You are a desktop or laptop</p>
+      <MediaQuery minDeviceWidth={1824}>
+        <p>You also have a huge screen</p>
+      </MediaQuery>
+    </MediaQuery>
+    <MediaQuery minResolution='2dppx'>
+      {/* You can also use a function (render prop) as a child */}
+      {(matches) =>
+        matches
+          ? <p>You are retina</p>
+          : <p>You are not retina</p>
+      }
+    </MediaQuery>
+  </div>
+)
 
-export default App;
