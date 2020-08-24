@@ -7,6 +7,11 @@ class CalendarContainer extends Component {
         this.state = {
             currentDate: Date()
         }
+        function daysInMonth(year, month) {
+            return new Date(year, month, 0).getDate();
+          }
+          console.log (daysInMonth(new Date().getFullYear(), new Date().getMonth()))
+        //   console.log (daysInMonth(2016, 2))
     }
     render() {
         return (
