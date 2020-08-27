@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
-import { CalendarView } from './CalendarView.js'
+import { CalendarView } from './CalendarView.js';
+
 
 class CalendarContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentDate: Date(),
-            days: ''
+            currentDate: new Date()
         }
-        const daysInMonth = (year, month) => (
+    }
+    daysInMonth = (year, month) => {
+        return (
             new Date(year, month, 0).getDate()
         )
-      daysInMonth(2020, 2)
+    }
+    numberOfDays = () => {
+        return (
+            [...Array(this.daysInMonth(2020, 2)).keys()].map(x => ++x)
+        )
     }
     render() {
         return (
-            <CalendarView
-                currentDate={this.state.currentDate}
+            <>
+                <CalendarView
+                    currentDate={this.state.currentDate}
+                    numberOfDays={this.numberOfDays()}
+                />
 
-            />
+            </>
         )
     }
 }

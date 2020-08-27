@@ -5,6 +5,6 @@ import { Section } from './calendarView/Section'
 export const CalendarView = (props) => (
     <>
         <Header currentDate={props.currentDate} />
-        <Section />
+        <Section numberOfDays={props.numberOfDays}/>
     </>
 )
