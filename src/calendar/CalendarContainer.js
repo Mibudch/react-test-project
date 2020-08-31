@@ -6,9 +6,17 @@ class CalendarContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentDate: new Date()
+            currentDate: new Date(),
+            currentYear: 2020,
+            currentMonth: 2
         }
+
     }
+    firstDayInMonth = () => { 
+        const d = new Date(2020, 1, 2)
+        return d.getDay()
+    }
+    
     daysInMonth = (year, month) => {
         return (
             new Date(year, month, 0).getDate()
@@ -20,13 +28,13 @@ class CalendarContainer extends Component {
         )
     }
     render() {
+        console.log(this.firstDayInMonth());
         return (
             <>
                 <CalendarView
                     currentDate={this.state.currentDate}
                     numberOfDays={this.numberOfDays()}
                 />
-
             </>
         )
     }
