@@ -13,10 +13,15 @@ export const Section = (props) => (
         <div className='flex wrap'>
             {props.daysFromPreviousMonth.map((el, i) => {
                 return (
-                    <div key={i} className='size border centried fade'>{el}</div>
+                    <div key={i} className='size border centried'>{el}</div>
                 )
             })}
             {props.numberOfDays.map((el, i) => {
+                return (
+                    <div key={i} className='size border centried fade'>{el}</div>
+                )
+            })}
+            {props.daysFromNextMonth.map((el, i) => {
                 return (
                     <div key={i} className='size border centried'>{el}</div>
                 )

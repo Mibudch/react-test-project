@@ -8,37 +8,44 @@ class CalendarContainer extends Component {
         this.state = {
             currentDate: new Date(),
             currentYear: new Date().getFullYear(),
-            currentMonth: new Date().getMonth()
+            currentMonth: new Date(2020, 7).getMonth(),
+            currentDay: new Date().getDay()
         }
     }
-    daysInMonth = (year, month) => {
-        return (
-            new Date(year, month, 0).getDate()
+    daysInMonth = () => {
+        const date1 = new Date(this.state.currentYear, this.state.currentMonth, this.state.currentDay)
+        const date2 = new Date(this.state.currentYear, this.state.currentMonth + 1, this.state.currentDay)
+        const days = Math.round((date2 - date1) / 1000 / 3600 / 24)
+        return days
+    }
+    numberOfDays = () =>{
+        return(
+        [...Array(this.daysInMonth()).keys()].map(x => ++x)
         )
     }
-    daysInPreviousMonth = (year, month) => {
-        return (
-            new Date(year, month - 2, 0).getDate()
-        )
+    daysInPreviousMonth = () => {
+        const date1 = new Date(this.state.currentYear, this.state.currentMonth - 1, this.state.currentDay)
+        const date2 = new Date(this.state.currentYear, this.state.currentMonth, this.state.currentDay)
+        const days = Math.round((date2 - date1) / 1000 / 3600 / 24)
+        return days
     }
-    numberOfDays = () => {
+    firstDayInMonth = () => {
         return (
-            [...Array(this.daysInMonth(this.state.currentYear, this.state.currentMonth)).keys()].map(x => ++x)
-        )
-    }
-    firstDayInMonth = (year, month) => {
-        return (
-            new Date(year, month, 0).getDay()
+            new Date(this.state.currentYear, this.state.currentMonth, 0).getDay()
         )
     }
     daysFromPreviousMonth = () => {
         const arrOfPreviousMonthDays = [];
-        const daysInPreviousMont = this.daysInPreviousMonth(this.state.currentYear, this.state.currentMonth)
-        const firstDayInMonth = this.firstDayInMonth(this.state.currentYear, this.state.currentMonth)
-        for (let i = daysInPreviousMont; i > (daysInPreviousMont - firstDayInMonth); i--) {
+        for (let i = this.daysInPreviousMonth(); i > (this.daysInPreviousMonth() - this.firstDayInMonth()); i--) {
             arrOfPreviousMonthDays.push(i)
         }
         return arrOfPreviousMonthDays.reverse()
+    }
+    daysFromNextMonth = () => {
+        const days = (41 - this.daysInMonth())
+        return (
+            [...Array(days).keys()].map(x => ++x)
+        )
     }
     render() {
         console.log(this.daysFromPreviousMonth())
@@ -48,6 +55,7 @@ class CalendarContainer extends Component {
                     currentDate={this.state.currentDate}
                     numberOfDays={this.numberOfDays()}
                     daysFromPreviousMonth={this.daysFromPreviousMonth()}
+                    daysFromNextMonth={this.daysFromNextMonth()}
                 />
             </>
         )
