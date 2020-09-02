@@ -20,6 +20,7 @@ export const CalendarView = (props) => (
             previousYear={props.previousYear}
             bottomMonth={props.bottomMonth}
             bottomYear={props.bottomYear}
+            todayFlag={props.todayFlag}
         />
         <Footer 
         bottomMonth={props.bottomMonth}

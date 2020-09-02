@@ -1,6 +1,7 @@
 import React from 'react';
 import './Section.css'
 const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс',]
+
 export const Section = (props) => (
     <section className='width'>
         <div>
@@ -25,7 +26,7 @@ export const Section = (props) => (
                 })}
                 {props.numberOfDays.map((el, i) => {
                         return (
-                            (el + 1) === new Date().getDay() ? <strong key={i} className='size border centried fade red'>{el}</strong> : <strong key={i} className='size border centried fade'>{el}</strong>
+                           ((el + 1) === new Date().getDay() && props.todayFlag) ? <strong key={i} className='size border centried fade red'>{el}</strong> : <strong key={i} className='size border centried fade'>{el}</strong>
                         )
                 })}
                 {props.daysFromNextMonth.map((el, i) => {

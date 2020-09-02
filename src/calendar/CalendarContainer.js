@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CalendarView } from './CalendarView.js';
+import axios from 'axios';
 const genitiveMonth = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 
@@ -12,7 +13,16 @@ class CalendarContainer extends Component {
             currentMonth: new Date().getMonth(),
             currentWeekDay: new Date().getDay(),
             currentDay: new Date().getDate(),
+            weather: []
         }
+    }
+    componentDidMount() {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=london&appid=8deb1290960a6df846daf0a26e878871`)
+            .then(res => {
+                console.log(res)
+                const weather = res.data;
+                this.setState({ weather });
+            })
     }
     daysInMonth = () => {
         const date1 = new Date(this.state.currentYear, this.state.currentMonth, this.state.currentWeekDay)
@@ -97,6 +107,9 @@ class CalendarContainer extends Component {
             }
         }
     }
+    getTodayFlag = () => (new Date().getMonth() === month.indexOf(this.getMonth()) && new Date().getFullYear() === this.state.currentYear)
+
+
     render() {
         return (
             <>
@@ -113,6 +126,7 @@ class CalendarContainer extends Component {
                     previousYear={this.handlerOnClickPreviousYear}
                     bottomMonth={this.getMonth()}
                     bottomYear={this.state.currentYear}
+                    todayFlag={this.getTodayFlag()}
                 />
             </>
         )
