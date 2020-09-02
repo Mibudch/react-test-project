@@ -1,7 +1,7 @@
 import React from 'react'
-const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+import './Header.css'
 export const Header = (props) => (
-    <header>
-        <strong>{`${props.currentDay} ${props.currentMonth + 1} ${props.currentYear}`}</strong>
+    <header className='header'>
+        <h2>{`${props.currentDay} ${props.currentMonth} ${props.currentYear} года`}</h2>
     </header>
 )

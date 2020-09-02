@@ -4,8 +4,10 @@ const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс',]
 export const Section = (props) => (
     <section className='width'>
         <div>
-            <button onClick={props.previousMonth}><strong>Previous month</strong></button>
-            <button onClick={props.nextMonth}><strong>Next month</strong></button>
+            <button onClick={props.previousMonth} className='buttonWidth'><strong>Previous month</strong></button>
+            <button onClick={props.nextMonth} className='buttonWidth'><strong>Next month</strong></button>
+            <button onClick={props.previousYear} className='buttonWidth'><strong>Previous year</strong></button>
+            <button onClick={props.nextYear} className='buttonWidth'><strong>Next year</strong></button>
         </div>
         <div>
             <strong className='flex'>
@@ -22,15 +24,16 @@ export const Section = (props) => (
                     )
                 })}
                 {props.numberOfDays.map((el, i) => {
-                    return (
-                        <strong key={i} className='size border centried fade'>{el}</strong>
-                    )
+                        return (
+                            (el + 1) === new Date().getDay() ? <strong key={i} className='size border centried fade red'>{el}</strong> : <strong key={i} className='size border centried fade'>{el}</strong>
+                        )
                 })}
                 {props.daysFromNextMonth.map((el, i) => {
                     return (
                         <div key={i} className='size border centried'>{el}</div>
                     )
                 })}
+                <strong className='centried width'>{props.bottomMonth} {props.bottomYear}</strong>
             </div>
         </div>
     </section>

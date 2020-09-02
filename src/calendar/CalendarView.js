@@ -15,6 +15,10 @@ export const CalendarView = (props) => (
             daysFromNextMonth={props.daysFromNextMonth}
             nextMonth={props.nextMonth}
             previousMonth={props.previousMonth}
+            nextYear={props.nextYear}
+            previousYear={props.previousYear}
+            bottomMonth={props.bottomMonth}
+            bottomYear={props.bottomYear}
         />
     </div>
 )

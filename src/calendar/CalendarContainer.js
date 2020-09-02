@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CalendarView } from './CalendarView.js';
-
+const genitiveMonth = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 
 class CalendarContainer extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class CalendarContainer extends Component {
             currentYear: new Date().getFullYear(),
             currentMonth: new Date().getMonth(),
             currentWeekDay: new Date().getDay(),
-            currentDay: new Date().getDate()
+            currentDay: new Date().getDate(),
         }
     }
     daysInMonth = () => {
@@ -20,9 +21,11 @@ class CalendarContainer extends Component {
         return days
     }
     numberOfDays = () => {
-        return (
-            [...Array(this.daysInMonth()).keys()].map(x => ++x)
-        )
+        const days = []
+        for (let i = 0; i < this.daysInMonth(); i++) {
+            days.push(i + 1)
+        }
+        return days
     }
     daysInPreviousMonth = () => {
         const date1 = new Date(this.state.currentYear, this.state.currentMonth - 1, this.state.currentWeekDay)
@@ -68,18 +71,48 @@ class CalendarContainer extends Component {
             currentMonth: previousMonth
         }))
     }
+    handlerOnClickNextYear = () => {
+        const nextYear = this.state.currentYear + 1
+        this.setState({
+            currentYear: nextYear
+        })
+    }
+    handlerOnClickPreviousYear = () => {
+        const previousYear = this.state.currentYear - 1
+        this.setState({
+            currentYear: previousYear
+        })
+    }
+    getGenitiveMonthMonth = () => {
+        for (let i = 0; i < genitiveMonth.length; i++) {
+            if (new Date().getMonth() === i) {
+                return genitiveMonth[i]
+            }
+        }
+    }
+    getMonth = () => {
+        for (let i = 0; i < month.length; i++) {
+            if (this.state.currentMonth === i) {
+                return month[i]
+            }
+        }
+    }
     render() {
         return (
             <div>
                 <CalendarView
-                    currentDay={this.state.currentDay}
-                    currentMonth={this.state.currentMonth}
-                    currentYear={this.state.currentYear}
+                    currentDay={new Date().getDate()}
+                    currentMonth={this.getGenitiveMonthMonth()}
+                    currentYear={new Date().getFullYear()}
                     numberOfDays={this.numberOfDays()}
                     daysFromPreviousMonth={this.daysFromPreviousMonth()}
                     daysFromNextMonth={this.daysFromNextMonth()}
                     nextMonth={this.handlerOnClickNextMonth}
                     previousMonth={this.handlerOnClickPreviousMonth}
+                    nextYear={this.handlerOnClickNextYear}
+                    previousYear={this.handlerOnClickPreviousYear}
+                    bottomMonth={this.getMonth()}
+                    bottomYear={this.state.currentYear}
                 />
             </div>
         )

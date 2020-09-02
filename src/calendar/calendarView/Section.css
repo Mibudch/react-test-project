@@ -22,3 +22,12 @@
 .fade{
     background-color: grey;
 }
+.red{
+    color: red
+}
+.buttonWidth{
+    width: 50%;
+}
+.textAlign{
+    text-align: center;
+}
