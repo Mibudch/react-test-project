@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header } from './calendarView/Header.js'
-import { Section } from './calendarView/Section'
+import { Section } from './calendarView/Section.js'
+import {Footer} from './calendarView/Footer.js'
 import './calendarView/CalendarView.css'
 export const CalendarView = (props) => (
     <div className='padding'>
@@ -19,6 +20,10 @@ export const CalendarView = (props) => (
             previousYear={props.previousYear}
             bottomMonth={props.bottomMonth}
             bottomYear={props.bottomYear}
+        />
+        <Footer 
+        bottomMonth={props.bottomMonth}
+        bottomYear={props.bottomYear}
         />
     </div>
 )

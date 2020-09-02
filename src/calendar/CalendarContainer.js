@@ -99,7 +99,7 @@ class CalendarContainer extends Component {
     }
     render() {
         return (
-            <div>
+            <>
                 <CalendarView
                     currentDay={new Date().getDate()}
                     currentMonth={this.getGenitiveMonthMonth()}
@@ -114,7 +114,7 @@ class CalendarContainer extends Component {
                     bottomMonth={this.getMonth()}
                     bottomYear={this.state.currentYear}
                 />
-            </div>
+            </>
         )
     }
 }
