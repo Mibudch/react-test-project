@@ -34,6 +34,7 @@ export const Section = (props) => (
                         <div key={i} className='size border centried'>{el}</div>
                     )
                 })}
+                <strong className='centried width'>{props.bottomMonth} {props.bottomYear}</strong>
             </div>
         </div>
     </section>

@@ -1,5 +1,5 @@
 import React from 'react';
 import './Footer.css'
 export const Footer = (props) => (
-    <strong className='centried width'>{props.bottomMonth} {props.bottomYear}</strong>
+<div> <img src={`http://openweathermap.org/img/wn/${props.icon}@4x.png`} alt=''></img> {props.place} {props.weather.temp} C&deg;</div>
 )
